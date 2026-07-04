@@ -18,15 +18,14 @@ O site é **estático** (HTML, CSS e JavaScript puro, sem frameworks) e publicad
 
 studio.franjatorta/
 ├── index.html              # página principal do site
-├── logo.png                 # logo do estúdio
+├── logo.png                # logo do estúdio
 ├── admin/
-│   ├── index.html           # carrega o painel de administração (Decap CMS)
-│   └── config.yml           # configuração do painel (conexão com o GitHub)
+│   ├── index.html          # carrega o painel de administração (Decap CMS)
+│   └── config.yml          # configuração do painel (conexão com o GitHub)
 ├── content/
-│   └── galeria.json         # dados das fotos da galeria (editado pelo painel)
+│   └── galeria.json        # dados das fotos da galeria (editado pelo painel)
 └── images/
-└── galeria/              # fotos enviadas pelo painel ficam salvas aqui
-
+    └── galeria/            # fotos enviadas pelo painel ficam salvas aqui
 
 - O site é 100% estático e hospedado no **GitHub Pages**, direto a partir da branch `main`.
 - A seção **Galeria** carrega as fotos dinamicamente a partir do arquivo `content/galeria.json` via JavaScript.
