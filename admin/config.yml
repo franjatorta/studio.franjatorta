@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: franjatorta/franjatorta.studio # troque se o nome do repositório for outro
+  branch: main # troque para "gh-pages" se for esse o branch publicado no GitHub Pages
+
+# pasta onde as fotos enviadas pelo painel serão salvas dentro do repositório
+media_folder: "images/galeria"
+public_folder: "images/galeria"
+
+collections:
+  - name: "galeria"
+    label: "Galeria de Fotos"
+    files:
+      - file: "content/galeria.json"
+        label: "Fotos da Galeria"
+        name: "galeria"
+        fields:
+          - label: "Fotos"
+            name: "fotos"
+            widget: "list"
+            fields:
+              - { label: "Imagem", name: "imagem", widget: "image" }
+              - { label: "Legenda", name: "legenda", widget: "string", required: false }

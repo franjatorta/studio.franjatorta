@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franja Torta Studio — estúdio alternativo</title>
+<meta name="description" content="Franja Torta Studio — corte, cor e transformação de cabelo com atitude. Estúdio alternativo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#120e10;
+    --ink-2:#1c1517;
+    --paper:#efe6d9;
+    --paper-2:#e4d8c6;
+    --mauve:#c594a6;
+    --mauve-dim:#93677a;
+    --plum:#5b2440;
+    --mustard:#e0b83e;
+    --line: rgba(239,230,217,0.14);
+    --shadow: 0 10px 30px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Space Mono', monospace;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* grain overlay */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:500;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  h1,h2,h3{ font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:0.5px; margin:0; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  .marker{ font-family:'Permanent Marker', cursive; text-transform:none; letter-spacing:0; }
+
+  /* ---------- stamp / torn-sticker device ---------- */
+  .stamp{
+    position:relative;
+    background:var(--paper);
+    color:var(--ink);
+    clip-path: polygon(
+      1% 6%, 6% 2%, 14% 5%, 22% 1%, 30% 4%, 39% 0%, 48% 3%, 57% 0%, 66% 4%, 75% 1%,
+      84% 4%, 92% 1%, 99% 5%, 97% 14%, 100% 23%, 97% 32%, 100% 41%, 96% 50%,
+      100% 59%, 97% 68%, 100% 77%, 96% 86%, 99% 95%, 90% 98%, 82% 95%, 73% 99%,
+      64% 96%, 55% 100%, 46% 97%, 37% 100%, 28% 96%, 19% 99%, 10% 95%, 2% 98%,
+      4% 89%, 0% 80%, 4% 71%, 1% 62%, 5% 53%, 0% 44%, 4% 35%, 1% 26%, 5% 17%
+    );
+    box-shadow: var(--shadow);
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:200;
+    background:rgba(18,14,16,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand img{ width:38px; height:38px; border-radius:6px; transform:rotate(-4deg); box-shadow:var(--shadow); }
+  .brand span{ font-family:'Anton', sans-serif; font-size:1.1rem; letter-spacing:0.5px; }
+  nav.links{ display:flex; gap:26px; }
+  nav.links a{
+    text-decoration:none; font-size:0.82rem; letter-spacing:1px; text-transform:uppercase;
+    color:var(--paper); opacity:0.8; position:relative; padding-bottom:3px;
+  }
+  nav.links a:hover{ opacity:1; }
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0%;
+    background:var(--mauve); transition:width .25s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--mauve); color:var(--ink); text-decoration:none;
+    font-size:0.78rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;
+    padding:9px 16px; border-radius:3px; box-shadow:var(--shadow);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{ transform:translateY(-2px); background:var(--mustard); }
+  .burger{ display:none; background:none; border:none; color:var(--paper); font-size:1.6rem; cursor:pointer; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 24px 80px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(91,36,64,0.55), transparent 55%),
+      radial-gradient(ellipse at 75% 80%, rgba(197,148,166,0.18), transparent 55%),
+      var(--ink);
+  }
+  .eyebrow{
+    display:inline-block; margin-bottom:26px;
+    font-family:'Permanent Marker', cursive;
+    color:var(--mauve); font-size:1.15rem; transform:rotate(-3deg);
+  }
+  .hero-title{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .hero-title .stamp{
+    padding:10px 34px;
+    font-size:clamp(2.6rem, 9vw, 6.2rem);
+    line-height:0.95;
+    animation: slap .6s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  .hero-title .stamp:nth-child(1){ transform:rotate(-3deg); animation-delay:.05s; }
+  .hero-title .stamp:nth-child(2){ transform:rotate(2.4deg); background:var(--mauve); animation-delay:.2s; }
+
+  @keyframes slap{
+    0%{ opacity:0; transform:scale(0.4) rotate(0deg); }
+    70%{ opacity:1; }
+    100%{ opacity:1; }
+  }
+
+  .hero p.sub{
+    max-width:520px; margin:30px auto 8px;
+    color:var(--paper); opacity:0.85; font-size:0.98rem;
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:30px; flex-wrap:wrap; justify-content:center; }
+  .btn{
+    text-decoration:none; font-family:'Space Mono', monospace; font-weight:700;
+    text-transform:uppercase; letter-spacing:1px; font-size:0.82rem;
+    padding:15px 26px; border-radius:2px; display:inline-block;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-solid{ background:var(--mustard); color:var(--ink); box-shadow:var(--shadow); }
+  .btn-solid:hover{ transform:translateY(-3px) rotate(-1deg); }
+  .btn-outline{ border:2px solid var(--paper); color:var(--paper); }
+  .btn-outline:hover{ background:var(--paper); color:var(--ink); transform:translateY(-3px) rotate(1deg); }
+
+  .scroll-cue{
+    margin-top:64px; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase;
+    opacity:0.5; animation:bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+  /* ---------- section shell ---------- */
+  section{ padding:110px 0; position:relative; }
+  .tag-label{
+    font-family:'Permanent Marker', cursive; color:var(--mustard);
+    font-size:1rem; display:inline-block; margin-bottom:10px; transform:rotate(-2deg);
+  }
+  .section-title{ font-size:clamp(2rem,5vw,3.2rem); margin-bottom:20px; }
+  .section-head{ max-width:640px; margin-bottom:60px; }
+  .section-head p{ opacity:0.75; font-size:0.95rem; }
+
+  /* ---------- manifesto ---------- */
+  .manifesto{ background:var(--ink-2); }
+  .manifesto-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:60px; align-items:center;
+  }
+  .manifesto p{ opacity:0.85; margin:0 0 18px; font-size:0.98rem; }
+  .quote-card{
+    background:var(--paper); color:var(--ink);
+    padding:40px 30px; border-radius:4px; transform:rotate(2deg);
+    box-shadow:var(--shadow); position:relative;
+  }
+  .quote-card::before{
+    content:"✂"; position:absolute; top:-18px; left:-18px;
+    width:44px; height:44px; border-radius:50%; background:var(--plum); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+    transform:rotate(-8deg); box-shadow:var(--shadow);
+  }
+  .quote-card p{ font-family:'Permanent Marker', cursive; font-size:1.4rem; line-height:1.4; color:var(--plum); opacity:1; }
+  .quote-card span{ font-size:0.78rem; letter-spacing:1px; text-transform:uppercase; opacity:0.6; }
+
+  /* ---------- services ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:34px;
+  }
+  .service-card{
+    padding:30px 24px 26px;
+    display:flex; flex-direction:column; gap:10px;
+    transition:transform .25s ease;
+  }
+  .service-card:nth-child(6n+1){ transform:rotate(-1.6deg); }
+  .service-card:nth-child(6n+2){ transform:rotate(1.1deg); }
+  .service-card:nth-child(6n+3){ transform:rotate(-0.8deg); }
+  .service-card:nth-child(6n+4){ transform:rotate(1.6deg); }
+  .service-card:nth-child(6n+5){ transform:rotate(-1.1deg); }
+  .service-card:nth-child(6n+6){ transform:rotate(0.9deg); }
+  .service-card:hover{ transform:rotate(0deg) scale(1.03); }
+  .service-card h3{ font-size:1.25rem; }
+  .service-card p{ font-size:0.86rem; opacity:0.75; margin:0; }
+  .service-price{
+    margin-top:auto; padding-top:14px; border-top:1px dashed rgba(18,14,16,0.25);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .service-price b{ font-family:'Permanent Marker', cursive; font-size:1.2rem; color:var(--plum); }
+  .service-price small{ font-size:0.65rem; text-transform:uppercase; letter-spacing:1px; opacity:0.6; }
+
+  /* ---------- gallery ---------- */
+  .gallery{ background:var(--ink-2); }
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  .photo{
+    aspect-ratio:3/4; border-radius:3px; position:relative; overflow:hidden;
+    box-shadow:var(--shadow);
+    background:linear-gradient(160deg, var(--mauve-dim), var(--plum));
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:16px;
+  }
+  .photo:nth-child(odd){ transform:rotate(-2deg); }
+  .photo:nth-child(even){ transform:rotate(2deg); margin-top:22px; }
+  .photo span{
+    font-size:0.72rem; letter-spacing:0.5px; opacity:0.85; font-family:'Space Mono',monospace;
+  }
+  .tape{
+    position:absolute; top:-8px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:70px; height:22px; background:rgba(239,230,217,0.55);
+  }
+
+  /* ---------- testimonials ---------- */
+  .notes-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .note{
+    background:var(--mustard); color:var(--ink); padding:26px 22px;
+    box-shadow:var(--shadow); font-family:'Permanent Marker', cursive; font-size:1.05rem;
+    line-height:1.45;
+  }
+  .note:nth-child(1){ transform:rotate(-2deg); background:var(--mustard); }
+  .note:nth-child(2){ transform:rotate(1.5deg); background:var(--paper); margin-top:20px; }
+  .note:nth-child(3){ transform:rotate(-1deg); background:var(--mauve); }
+  .note footer{
+    margin-top:16px; font-family:'Space Mono', monospace; font-size:0.72rem;
+    letter-spacing:1px; text-transform:uppercase; opacity:0.65;
+  }
+
+  /* ---------- contact ---------- */
+  .contact{ background:var(--ink); }
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;
+  }
+  .info-list{ list-style:none; padding:0; margin:0 0 30px; }
+  .info-list li{
+    padding:16px 0; border-bottom:1px solid var(--line);
+    display:flex; gap:16px; font-size:0.92rem;
+  }
+  .info-list b{ min-width:110px; color:var(--mauve); font-size:0.72rem; letter-spacing:1px; text-transform:uppercase; }
+  .edit-flag{ color:var(--mustard); font-size:0.68rem; }
+
+  .contact-card{
+    background:var(--paper); color:var(--ink); padding:40px 32px; border-radius:4px;
+    transform:rotate(-1.4deg); box-shadow:var(--shadow);
+  }
+  .contact-card h3{ font-size:1.5rem; margin-bottom:14px; }
+  .contact-card p{ font-size:0.88rem; opacity:0.75; margin-bottom:26px; }
+  .contact-card .btn-solid{ width:100%; text-align:center; }
+  .contact-card .btn-outline{ width:100%; text-align:center; margin-top:12px; border-color:var(--ink); color:var(--ink); }
+  .contact-card .btn-outline:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line); padding:36px 0; text-align:center;
+  }
+  footer .brand{ justify-content:center; margin-bottom:14px; }
+  footer p{ font-size:0.72rem; opacity:0.5; letter-spacing:0.5px; }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(30px) rotate(0.5deg); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0) rotate(0deg); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    .manifesto-grid, .contact-grid{ grid-template-columns:1fr; gap:40px; }
+    .services-grid{ grid-template-columns:repeat(2,1fr); }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .notes-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:720px){
+    nav.links{ display:none; }
+    .burger{ display:block; }
+    .nav-cta{ display:none; }
+    .services-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    section{ padding:70px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" style="text-decoration:none;">
+      <img src="logo.png" alt="Franja Torta Studio">
+      <span>Franja Torta</span>
+    </a>
+    <nav class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <!-- EDITAR: troque pelo link real gerado no agende-me.com -->
+    <a class="nav-cta" href="https://vitorgabrielmartinsblan.agende-me.com" target="_blank" rel="noopener">Agendar</a>
+    <button class="burger" aria-label="menu">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <span class="eyebrow">estúdio alternativo</span>
+  <div class="hero-title">
+    <div class="stamp">FRANJA</div>
+    <div class="stamp">TORTA</div>
+  </div>
+  <p class="sub">Corte, cor e transformação pra quem não segue manual de salão nenhum. Cabelo é identidade — aqui a gente lapida a sua.</p>
+  <div class="hero-actions">
+    <!-- EDITAR: troque pelo link real gerado no agende-me.com, ex: https://franjatorta.agende-me.com -->
+    <a class="btn btn-solid" href="https://vitorgabrielmartinsblan.agende-me.com" target="_blank" rel="noopener">Agendar horário</a>
+    <a class="btn btn-outline" href="https://www.instagram.com/franjatorta.studio/" target="_blank" rel="noopener">@franjatorta.studio</a>
+  </div>
+  <div class="scroll-cue">role pra baixo ↓</div>
+</section>
+
+<section class="manifesto" id="sobre">
+  <div class="wrap manifesto-grid">
+    <div class="reveal">
+      <span class="tag-label">o estúdio</span>
+      <h2 class="section-title">Aqui ninguém sai igual entrou.</h2>
+      <p>O Franja Torta nasceu torto de propósito. É um estúdio pra quem já cansou de referência de revista e quer um cabelo que combine com a trilha sonora da própria vida — seja ela punk, seja ela silenciosa.</p>
+      <p>Trabalhamos corte técnico e cor autoral lado a lado com liberdade de expressão: cabelo raspado, franja mal comportada, cor que ninguém tem coragem de pedir. Se você chegou até aqui, provavelmente já sabe o que quer — a gente só ajuda a tirar do papel.</p>
+    </div>
+    <div class="quote-card reveal">
+      <p>"Corte errado não existe. Existe corte que ainda não é seu."</p>
+      <span>— manifesto do estúdio</span>
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag-label">no menu</span>
+      <h2 class="section-title">Serviços</h2>
+      <p>Preços de exemplo — troque pelos valores reais do seu salão. <span class="edit-flag">[EDITAR]</span></p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card stamp reveal">
+        <h3>Corte &amp; Franja</h3>
+        <p>Do clássico ao trash. Sua franja, do seu jeito — reta, repicada ou completamente torta.</p>
+        <div class="service-price"><b>R$ 80</b><small>a partir de</small></div>
+      </div>
+      <div class="service-card stamp reveal">
+        <h3>Coloração Criativa</h3>
+        <p>Rosa, prata, vermelho vivo. A cor que ninguém mais no seu bairro teve coragem de usar.</p>
+        <div class="service-price"><b>R$ 180</b><small>a partir de</small></div>
+      </div>
+      <div class="service-card stamp reveal">
+        <h3>Descoloração &amp; Mechas</h3>
+        <p>Base pronta pra qualquer cor doida que vier depois. Técnica cuidadosa, resultado sem dó.</p>
+        <div class="service-price"><b>R$ 220</b><small>a partir de</small></div>
+      </div>
+      <div class="service-card stamp reveal">
+        <h3>Hidratação &amp; Tratamento</h3>
+        <p>Pra cabelo que já apanhou da química e merece descanso. Recuperação de verdade.</p>
+        <div class="service-price"><b>R$ 90</b><small>a partir de</small></div>
+      </div>
+      <div class="service-card stamp reveal">
+        <h3>Penteados &amp; Finalização</h3>
+        <p>De evento a segunda-feira qualquer. Finalização com identidade, não com fôrma.</p>
+        <div class="service-price"><b>R$ 70</b><small>a partir de</small></div>
+      </div>
+      <div class="service-card stamp reveal">
+        <h3>Consultoria de Estilo</h3>
+        <p>Não sabe o que quer? A gente senta, conversa e monta um plano de transformação.</p>
+        <div class="service-price"><b>R$ 50</b><small>a partir de</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag-label">o trabalho</span>
+      <h2 class="section-title">Galeria</h2>
+      <p>Fotos gerenciadas pelo painel de administração em <code>/admin</code>.</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- preenchido automaticamente via JS a partir de content/galeria.json -->
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag-label">quem já passou por aqui</span>
+      <h2 class="section-title">Depoimentos</h2>
+      <p>Exemplos de depoimento — troque pelos comentários reais das suas clientes. <span class="edit-flag">[EDITAR]</span></p>
+    </div>
+    <div class="notes-grid">
+      <div class="note reveal">"Fui pedir um corte e saí com uma identidade nova. Nunca mais cortei em outro lugar."<footer>— cliente, exemplo</footer></div>
+      <div class="note reveal">"O único lugar onde chego com uma ideia maluca e saio com algo melhor do que eu imaginei."<footer>— cliente, exemplo</footer></div>
+      <div class="note reveal">"Ambiente sem julgamento, resultado impecável. Virou ritual mensal."<footer>— cliente, exemplo</footer></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="tag-label">visite</span>
+      <h2 class="section-title">Contato</h2>
+      <ul class="info-list">
+        <li><b>Endereço</b><span>Rua Exemplo, 123 — Centro, Sua Cidade <span class="edit-flag">[EDITAR]</span></span></li>
+        <li><b>Horário</b><span>Terça a sábado, 9h às 19h <span class="edit-flag">[EDITAR]</span></span></li>
+        <li><b>Agendar</b><span><a href="https://vitorgabrielmartinsblan.agende-me.com" target="_blank" rel="noopener">vitorgabrielmartinsblan.agende-me.com</a></span></li>
+        <li><b>WhatsApp</b><span>(00) 00000-0000 <span class="edit-flag">[EDITAR]</span></span></li>
+        <li><b>Instagram</b><span><a href="https://www.instagram.com/franjatorta.studio/" target="_blank" rel="noopener">@franjatorta.studio</a></span></li>
+      </ul>
+    </div>
+    <div class="contact-card reveal">
+      <h3>Bora marcar?</h3>
+      <p>Veja os horários disponíveis e marque direto — sem precisar ligar nem esperar resposta.</p>
+      <!-- EDITAR: troque pelo link real gerado no agende-me.com -->
+      <a class="btn btn-solid" href="https://vitorgabrielmartinsblan.agende-me.com" target="_blank" rel="noopener">Ver horários disponíveis</a>
+      <a class="btn btn-outline" href="https://wa.me/5500000000000" target="_blank" rel="noopener">Prefiro chamar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" style="text-decoration:none; justify-content:center;">
+      <img src="logo.png" alt="Franja Torta Studio" style="width:30px;height:30px;">
+      <span>Franja Torta Studio</span>
+    </a>
+    <p>© <span id="year"></span> Franja Torta Studio — estúdio alternativo. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // carrega as fotos da galeria a partir do content/galeria.json
+  // esse arquivo é editado pelo painel /admin — não precisa mexer aqui
+  fetch('content/galeria.json')
+    .then(r => r.json())
+    .then(data => {
+      const grid = document.getElementById('gallery-grid');
+      const fotos = (data && data.fotos) ? data.fotos : [];
+      grid.innerHTML = fotos.map(f => {
+        if (f.imagem) {
+          return `<div class="photo reveal" style="background-image:url('${f.imagem}'); background-size:cover; background-position:center;">
+                    <div class="tape"></div>
+                  </div>`;
+        }
+        return `<div class="photo reveal"><div class="tape"></div><span>${f.legenda || 'foto'}<br>[adicionar]</span></div>`;
+      }).join('');
+      // reativa a animação de entrada nas fotos recém-criadas
+      document.querySelectorAll('#gallery-grid .reveal').forEach(el => io.observe(el));
+    })
+    .catch(() => {
+      document.getElementById('gallery-grid').innerHTML =
+        '<p style="opacity:0.6;">Não foi possível carregar as fotos da galeria.</p>';
+    });
+
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.15 });
+  items.forEach(el=>io.observe(el));
+
+  const burger = document.querySelector('.burger');
+  const links = document.querySelector('nav.links');
+  burger.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '60px';
+    links.style.right = '24px';
+    links.style.background = 'var(--ink-2)';
+    links.style.padding = '18px 24px';
+    links.style.borderRadius = '4px';
+    links.style.boxShadow = 'var(--shadow)';
+  });
+</script>
+
+</body>
+</html>
