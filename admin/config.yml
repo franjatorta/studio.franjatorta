@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: franjatorta/franjatorta.studio # troque se o nome do repositório for outro
+  repo: franjatorta/studio.franjatorta # troque se o nome do repositório for outro
   branch: main # troque para "gh-pages" se for esse o branch publicado no GitHub Pages
 
 # pasta onde as fotos enviadas pelo painel serão salvas dentro do repositório
