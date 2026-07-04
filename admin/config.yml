@@ -2,8 +2,6 @@ backend:
   name: github
   repo: franjatorta/studio.franjatorta # nome real do repositório no GitHub
   branch: main # troque para "gh-pages" se for esse o branch publicado no GitHub Pages
-  base_url: https://zippy-lamington-c1a549.netlify.app
-  auth_endpoint: auth
 
 # pasta onde as fotos enviadas pelo painel serão salvas dentro do repositório
 media_folder: "images/galeria"
