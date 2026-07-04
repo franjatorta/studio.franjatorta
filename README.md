@@ -14,6 +14,8 @@ Este repositório contém o site institucional do Franja Torta Studio: uma pági
 O site é **estático** (HTML, CSS e JavaScript puro, sem frameworks) e publicado gratuitamente via **GitHub Pages**. A galeria de fotos é editável através de um painel de administração simples, sem precisar mexer em código.
 
 ## 🗂️ Estrutura de arquivos
+
+
 studio.franjatorta/
 ├── index.html              # página principal do site
 ├── logo.png                 # logo do estúdio
