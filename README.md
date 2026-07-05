@@ -27,6 +27,6 @@ O site é **estático** (HTML, CSS e JavaScript puro, sem frameworks) e publicad
 - O site é 100% estático e hospedado no **GitHub Pages**, direto a partir da branch `main`.
 - A seção **Galeria** carrega as fotos dinamicamente a partir do arquivo `content/galeria.json` via JavaScript.
 - Para editar as fotos sem mexer em código, existe um painel de administração feito com **[Decap CMS](https://decapcms.org/)**, acessível em:
-  👉 `https://zippy-lamington-c1a549.netlify.app/admin/`
+
 - O login do painel usa sua conta do **GitHub** como autenticação (via um app OAuth conectado a um projeto na Netlify, que serve apenas como intermediário de login — o site continua hospedado só no GitHub Pages).
 - Toda alteração feita no painel gera automaticamente um commit neste repositório, e o site atualiza sozinho em poucos minutos.
