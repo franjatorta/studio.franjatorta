@@ -7,7 +7,7 @@
 <meta name="description" content="Franja Torta Studio — corte, cor e transformação de cabelo com atitude. Estúdio alternativo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Permanent+Marker&family=Special+Elite&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#120e10;
@@ -18,6 +18,8 @@
     --mauve-dim:#93677a;
     --plum:#5b2440;
     --mustard:#e0b83e;
+    --logo-violet:#6f4d9e;
+    --logo-lavender:#bda4dc;
     --line: rgba(239,230,217,0.14);
     --shadow: 0 10px 30px rgba(0,0,0,0.55);
   }
@@ -115,26 +117,35 @@
       radial-gradient(ellipse at 75% 80%, rgba(197,148,166,0.18), transparent 55%),
       var(--ink);
   }
-  .eyebrow{
-    display:inline-block; margin-bottom:26px;
-    font-family:'Permanent Marker', cursive;
-    color:var(--mauve); font-size:1.15rem; transform:rotate(-3deg);
+  /* ---------- hero logo (animated stamp letters) ---------- */
+  .hero-logo{
+    --dur: 5.6s;
+    font-size: clamp(1.9rem, 7.2vw, 4.4rem);
+    margin-bottom: 22px;
   }
-  .hero-title{ display:flex; flex-direction:column; gap:14px; align-items:center; }
-  .hero-title .stamp{
-    padding:10px 34px;
-    font-size:clamp(2.6rem, 9vw, 6.2rem);
-    line-height:0.95;
-    animation: slap .6s cubic-bezier(.2,1.4,.4,1) both;
+  .hero-logo-inner{ display:flex; flex-direction:column; align-items:center; gap:.132em; }
+  .hero-logo-row{ display:flex; align-items:flex-start; flex-wrap:wrap; justify-content:center; }
+  .hl{
+    line-height:1;
+    box-shadow:0 6px 18px rgba(0,0,0,0.45);
   }
-  .hero-title .stamp:nth-child(1){ transform:rotate(-3deg); animation-delay:.05s; }
-  .hero-title .stamp:nth-child(2){ transform:rotate(2.4deg); background:var(--mauve); animation-delay:.2s; }
-
-  @keyframes slap{
-    0%{ opacity:0; transform:scale(0.4) rotate(0deg); }
-    70%{ opacity:1; }
-    100%{ opacity:1; }
+  @keyframes jit{
+    0%,100%{ transform:translate(0px,0px) rotate(0deg); }
+    25%{ transform:translate(0.9px,-0.7px) rotate(0.6deg); }
+    50%{ transform:translate(-0.8px,0.6px) rotate(-0.5deg); }
+    75%{ transform:translate(0.6px,0.8px) rotate(0.4deg); }
   }
+  @keyframes st0 { 0%, 5.3% { opacity: 0; transform: scale(2.6) rotate(-18deg); } 5.4% { opacity: 1; transform: scale(0.9) rotate(-6deg); } 7% { transform: scale(1.07) rotate(-6deg); } 8.5%, 91.9% { opacity: 1; transform: scale(1) rotate(-6deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-6deg); } }
+  @keyframes st1 { 0%, 8.3% { opacity: 0; transform: scale(2.6) rotate(16deg); } 8.4% { opacity: 1; transform: scale(0.9) rotate(4deg); } 10% { transform: scale(1.07) rotate(4deg); } 11.5%, 91.9% { opacity: 1; transform: scale(1) rotate(4deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(4deg); } }
+  @keyframes st2 { 0%, 11.3% { opacity: 0; transform: scale(2.6) rotate(-14deg); } 11.4% { opacity: 1; transform: scale(0.9) rotate(-3deg); } 13% { transform: scale(1.07) rotate(-3deg); } 14.5%, 91.9% { opacity: 1; transform: scale(1) rotate(-3deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-3deg); } }
+  @keyframes st4 { 0%, 17.4% { opacity: 0; transform: scale(2.6) rotate(-16deg); } 17.5% { opacity: 1; transform: scale(0.9) rotate(-4deg); } 19.1% { transform: scale(1.07) rotate(-4deg); } 20.6%, 91.9% { opacity: 1; transform: scale(1) rotate(-4deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-4deg); } }
+  @keyframes st5 { 0%, 20.4% { opacity: 0; transform: scale(2.6) rotate(15deg); } 20.5% { opacity: 1; transform: scale(0.9) rotate(3deg); } 22.1% { transform: scale(1.07) rotate(3deg); } 23.6%, 91.9% { opacity: 1; transform: scale(1) rotate(3deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(3deg); } }
+  @keyframes st6 { 0%, 25.8% { opacity: 0; transform: scale(2.6) rotate(-17deg); } 25.9% { opacity: 1; transform: scale(0.9) rotate(-5deg); } 27.5% { transform: scale(1.07) rotate(-5deg); } 29%, 91.9% { opacity: 1; transform: scale(1) rotate(-5deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-5deg); } }
+  @keyframes st7 { 0%, 28.8% { opacity: 0; transform: scale(2.6) rotate(16deg); } 28.9% { opacity: 1; transform: scale(0.9) rotate(4deg); } 30.5% { transform: scale(1.07) rotate(4deg); } 32%, 91.9% { opacity: 1; transform: scale(1) rotate(4deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(4deg); } }
+  @keyframes st8 { 0%, 31.9% { opacity: 0; transform: scale(2.6) rotate(-13deg); } 32% { opacity: 1; transform: scale(0.9) rotate(-2deg); } 33.6% { transform: scale(1.07) rotate(-2deg); } 35.1%, 91.9% { opacity: 1; transform: scale(1) rotate(-2deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-2deg); } }
+  @keyframes st9 { 0%, 34.9% { opacity: 0; transform: scale(2.6) rotate(17deg); } 35% { opacity: 1; transform: scale(0.9) rotate(5deg); } 36.6% { transform: scale(1.07) rotate(5deg); } 38.1%, 91.9% { opacity: 1; transform: scale(1) rotate(5deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(5deg); } }
+  @keyframes st10 { 0%, 37.9% { opacity: 0; transform: scale(2.6) rotate(-18deg); } 38% { opacity: 1; transform: scale(0.9) rotate(-6deg); } 39.6% { transform: scale(1.07) rotate(-6deg); } 41.1%, 91.9% { opacity: 1; transform: scale(1) rotate(-6deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-6deg); } }
+  @keyframes st11 { 0%, 44.5% { opacity: 0; transform: scale(2.2) rotate(-10deg); } 44.6% { opacity: 1; transform: scale(0.92) rotate(-2deg); } 46.2% { transform: scale(1.06) rotate(-2deg); } 47.7%, 91.9% { opacity: 1; transform: scale(1) rotate(-2deg); } 92%, 100% { opacity: 0; transform: scale(1) rotate(-2deg); } }
 
   .hero p.sub{
     max-width:520px; margin:30px auto 8px;
@@ -325,10 +336,24 @@
 </header>
 
 <section class="hero" id="top">
-  <span class="eyebrow">estúdio alternativo</span>
-  <div class="hero-title">
-    <div class="stamp">FRANJA</div>
-    <div class="stamp">TORTA</div>
+  <div class="hero-logo" role="img" aria-label="Franja Torta — estúdio alternativo">
+    <div class="hero-logo-inner">
+      <div class="hero-logo-row">
+        <div class="hl" style="animation:st0 var(--dur) linear infinite both, jit .5s steps(1,end) 0s infinite; background:var(--paper); color:var(--ink); font-family:'Archivo Black',sans-serif; font-size:1em; padding:.132em .237em .184em; clip-path:polygon(0% 10%, 8% 0%, 52% 4%, 94% 0%, 100% 14%, 97% 55%, 100% 88%, 90% 100%, 45% 96%, 7% 100%, 0% 82%);">F</div>
+        <div class="hl" style="animation:st1 var(--dur) linear infinite both, jit .5s steps(1,end) .13s infinite; margin-top:.184em; margin-left:-.105em; background:var(--logo-violet); color:var(--paper); font-family:'Permanent Marker',cursive; font-size:.816em; padding:.194em .258em .226em; clip-path:polygon(3% 0%, 45% 5%, 90% 0%, 100% 20%, 96% 60%, 100% 92%, 55% 100%, 10% 96%, 0% 70%, 2% 30%);">r</div>
+        <div class="hl" style="animation:st2 var(--dur) linear infinite both, jit .5s steps(1,end) .26s infinite; margin-top:.079em; margin-left:-.079em; background:var(--paper); color:var(--ink); font-family:'Special Elite',cursive; font-weight:700; font-size:.921em; padding:.171em .229em .114em; clip-path:polygon(0% 18%, 10% 2%, 60% 0%, 100% 8%, 96% 45%, 100% 80%, 88% 100%, 30% 97%, 4% 92%, 2% 55%);">a</div>
+        <div class="hl" style="animation:st4 var(--dur) linear infinite both, jit .5s steps(1,end) .19s infinite; margin-top:.026em; margin-left:-.079em; background:var(--paper); color:var(--ink); font-family:'Permanent Marker',cursive; font-size:.947em; padding:.111em .194em .25em; clip-path:polygon(0% 10%, 8% 0%, 52% 4%, 94% 0%, 100% 14%, 97% 55%, 100% 88%, 90% 100%, 45% 96%, 7% 100%, 0% 82%);">n</div>
+        <div class="hl" style="animation:st5 var(--dur) linear infinite both, jit .5s steps(1,end) .31s infinite; margin-top:.211em; margin-left:-.105em; background:var(--logo-violet); color:var(--paper); font-family:'Archivo Black',sans-serif; font-size:.816em; padding:.161em .258em .323em; clip-path:polygon(0% 18%, 10% 2%, 60% 0%, 100% 8%, 96% 45%, 100% 80%, 88% 100%, 30% 97%, 4% 92%, 2% 55%);">ja</div>
+      </div>
+      <div class="hero-logo-row" style="margin-top:-.184em;">
+        <div class="hl" style="animation:st6 var(--dur) linear infinite both, jit .5s steps(1,end) .22s infinite; background:var(--logo-violet); color:var(--paper); font-family:'Archivo Black',sans-serif; font-size:1em; padding:.132em .237em .184em; clip-path:polygon(3% 0%, 45% 5%, 90% 0%, 100% 20%, 96% 60%, 100% 92%, 55% 100%, 10% 96%, 0% 70%, 2% 30%);">T</div>
+        <div class="hl" style="animation:st7 var(--dur) linear infinite both, jit .5s steps(1,end) .09s infinite; margin-top:.211em; margin-left:-.105em; background:var(--paper); color:var(--ink); font-family:'Special Elite',cursive; font-weight:700; font-size:.895em; padding:.176em .235em .118em; clip-path:polygon(0% 10%, 8% 0%, 52% 4%, 94% 0%, 100% 14%, 97% 55%, 100% 88%, 90% 100%, 45% 96%, 7% 100%, 0% 82%);">o</div>
+        <div class="hl" style="animation:st8 var(--dur) linear infinite both, jit .5s steps(1,end) .28s infinite; margin-top:.053em; margin-left:-.079em; background:var(--paper); color:var(--ink); font-family:'Permanent Marker',cursive; font-size:.842em; padding:.219em .234em .188em; clip-path:polygon(0% 18%, 10% 2%, 60% 0%, 100% 8%, 96% 45%, 100% 80%, 88% 100%, 30% 97%, 4% 92%, 2% 55%);">r</div>
+        <div class="hl" style="animation:st9 var(--dur) linear infinite both, jit .5s steps(1,end) .16s infinite; margin-top:.237em; margin-left:-.092em; background:var(--logo-lavender); color:var(--ink); font-family:'Archivo Black',sans-serif; font-size:.763em; padding:.172em .241em .276em; clip-path:polygon(3% 0%, 45% 5%, 90% 0%, 100% 20%, 96% 60%, 100% 92%, 55% 100%, 10% 96%, 0% 70%, 2% 30%);">t</div>
+        <div class="hl" style="animation:st10 var(--dur) linear infinite both, jit .5s steps(1,end) .35s infinite; margin-top:.026em; margin-left:-.105em; background:var(--paper); color:var(--ink); font-family:'Archivo Black',sans-serif; font-size:.921em; padding:.171em .229em .171em; clip-path:polygon(0% 10%, 8% 0%, 52% 4%, 94% 0%, 100% 14%, 97% 55%, 100% 88%, 90% 100%, 45% 96%, 7% 100%, 0% 82%);">a</div>
+      </div>
+      <div class="hl" style="animation:st11 var(--dur) linear infinite both, jit .5s steps(1,end) .4s infinite; margin-top:.026em; background:var(--logo-violet); color:var(--paper); font-family:'Special Elite',cursive; font-size:.25em; letter-spacing:.263em; text-transform:lowercase; padding:.474em 1.158em .368em; clip-path:polygon(1% 20%, 4% 0%, 50% 6%, 97% 0%, 100% 30%, 98% 75%, 100% 100%, 52% 94%, 2% 100%, 0% 60%);">studio alternativo</div>
+    </div>
   </div>
   <p class="sub">Corte, cor e transformação pra quem não segue manual de salão nenhum. Cabelo é identidade — aqui a gente lapida a sua.</p>
   <div class="hero-actions">
